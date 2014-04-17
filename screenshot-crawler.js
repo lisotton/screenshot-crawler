@@ -1,3 +1,8 @@
+/**
+ * Usage example:
+ *  casperjs screenshot-crawler.js --url=http://www.example.com --release=v1 --screenshots-folder=./dest/
+ */
+
 var casper = require('casper').create({
   /* verbose: true, logLevel: "debug" */
 });
@@ -35,7 +40,7 @@ function spider(url) {
     if (status == 200) {
       this.wait(2000, function() {
         var pathname = this.getGlobal('location').pathname;
-        
+
         this.echo(this.colorizer.format(status, statusStyle) + ' ' + url + ' --- Taking screenshot!!');
         this.capture(screenshotsFolder + encodeURIComponent(pathname) + '_' + release + '.png');
       });
